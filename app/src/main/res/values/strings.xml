@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">EnjoeiTest</string>
+    <string name="home">Home</string>
+    <string name="search">Busca</string>
+    <string name="photo">Fotos</string>
+    <string name="messages">Mensagens</string>
+    <string name="profile">Perfil</string>
 </resources>
