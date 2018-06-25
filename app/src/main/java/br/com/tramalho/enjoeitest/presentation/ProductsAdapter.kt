@@ -1,5 +1,6 @@
 package br.com.tramalho.enjoeitest.presentation
 
+import android.databinding.DataBindingUtil
 import android.databinding.ObservableArrayList
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import br.com.tramalho.enjoeitest.R
 import br.com.tramalho.enjoeitest.data.model.Product
+import br.com.tramalho.enjoeitest.databinding.ProductItemBinding
 
 private const val BANNER: Int = 0
 private const val ITEM: Int = 1
@@ -18,7 +20,7 @@ class ProductsAdapter(val itens: ArrayList<Product>) : RecyclerView.Adapter<Prod
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
 
-        val viewHolder = when (viewType) {
+        val viewHolder : BaseViewHolder = when (viewType) {
             ITEM -> createProductViewHolder(parent)
             else -> createBannerViewHolder(parent)
         }
@@ -26,7 +28,7 @@ class ProductsAdapter(val itens: ArrayList<Product>) : RecyclerView.Adapter<Prod
         return viewHolder
     }
 
-    private fun createBannerViewHolder(parent: ViewGroup): BaseViewHolder {
+    private fun createBannerViewHolder(parent: ViewGroup): BannerViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
 
         val view = layoutInflater.inflate(R.layout.banner_item, parent, false)
@@ -37,9 +39,10 @@ class ProductsAdapter(val itens: ArrayList<Product>) : RecyclerView.Adapter<Prod
     private fun createProductViewHolder(parent: ViewGroup): BaseViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
 
-        val view = layoutInflater.inflate(R.layout.product_item, parent, false)
+        val itemBinding = DataBindingUtil.inflate<ProductItemBinding>(layoutInflater,
+                R.layout.product_item, parent, false);
 
-        return BaseViewHolder(view)
+        return ProductViewHolder(itemBinding) as BaseViewHolder
     }
 
     override fun getItemCount(): Int {
@@ -53,7 +56,7 @@ class ProductsAdapter(val itens: ArrayList<Product>) : RecyclerView.Adapter<Prod
     override fun updateItens(list: ObservableArrayList<Product>) {
         this.itens.addAll(list as Collection<Product>)
 
-        if(itens.isNotEmpty() && !hasHeader){
+        if (itens.isNotEmpty() && !hasHeader) {
             val copy = itens[0].copy()
             itens.add(0, copy)
             hasHeader = true
@@ -66,12 +69,24 @@ class ProductsAdapter(val itens: ArrayList<Product>) : RecyclerView.Adapter<Prod
         return if (position == 0) BANNER else ITEM
     }
 
-    inner open class BaseViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+    inner abstract class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        abstract fun bind(product: Product)
+    }
 
-        fun bind(product: Product) {
+    inner open class ProductViewHolder(var binding: ProductItemBinding) : BaseViewHolder(binding.root) {
 
+        override fun bind(product: Product) {
+            val viewModel = ProductItemViewModel()
+            binding.viewModel = viewModel
+            binding.executePendingBindings();
+            viewModel.bind(product)
         }
     }
 
-    inner private class BannerViewHolder(itemView: View?) : BaseViewHolder(itemView)
+
+    inner private class BannerViewHolder(itemView: View) : BaseViewHolder(itemView) {
+        override fun bind(product: Product) {
+
+        }
+    }
 }

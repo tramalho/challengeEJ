@@ -23,7 +23,6 @@ class HomeViewModel() : ViewModel() {
     val listProducts: ObservableArrayList<Product> = ObservableArrayList()
     private var actualPage = 1
 
-
     fun start() {
         configVisibility(States.LOADING)
         ProductsUseCase(getRepository()).loadFromPage(actualPage, Callback())
@@ -62,7 +61,6 @@ class HomeViewModel() : ViewModel() {
 
             result?.products?.let {
                 listProducts.addAll(it)
-
             }
 
             configVisibility(States.LOADING_FINISH)
