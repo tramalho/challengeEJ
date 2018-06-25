@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupBottomNavigation() {
+
         bottomBar.disableShiftMode()
 
         bottomBar.setOnNavigationItemSelectedListener {
