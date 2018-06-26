@@ -32,4 +32,3 @@ private fun BottomNavigationView.log(e: Exception) {
     Log.e(this.javaClass.simpleName, "removeShiftMode > Unable to get shift mode field", e);
 }
 
-

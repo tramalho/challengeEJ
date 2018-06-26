@@ -14,8 +14,11 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "BASE_URL", "\"https://private-anon-ff6ada1084-enjoeitest.apiary-mock.com\"")
+        buildConfigField("String", "BASE_IMG_URL", "\"http://res.cloudinary.com/demo/image/upload\"")
+
     }
     buildTypes {
         release {
@@ -60,7 +63,7 @@ dependencies {
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:$retrofit_coroutines_version"
 
     implementation 'com.github.bumptech.glide:glide:4.4.0'
-    kapt 'com.github.bumptech.glide:compiler:4.4.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
 
 
     testImplementation "junit:junit:4.12"

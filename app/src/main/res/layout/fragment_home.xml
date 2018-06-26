@@ -21,7 +21,7 @@
             android:layout_height="0dp"
             android:layout_margin="5dp"
             android:visibility="@{viewModel.rvVisibility, default = gone}"
-            bind:itens="@{viewModel.listProducts}"
+            app:itens="@{viewModel.listProducts}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

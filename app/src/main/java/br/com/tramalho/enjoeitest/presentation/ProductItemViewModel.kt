@@ -5,7 +5,10 @@ import android.databinding.ObservableField
 import android.databinding.ObservableInt
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import br.com.tramalho.enjoeitest.BuildConfig
+import br.com.tramalho.enjoeitest.data.model.Photo
 import br.com.tramalho.enjoeitest.data.model.Product
+import br.com.tramalho.enjoeitest.infraestructure.URLBuilder
 import java.text.NumberFormat
 
 class ProductItemViewModel : ViewModel() {
@@ -20,6 +23,10 @@ class ProductItemViewModel : ViewModel() {
 
     val likes: ObservableField<String> = ObservableField<String>("0")
 
+    val avatarImgUrl: ObservableField<String> = ObservableField<String>("")
+
+    val productImgUrl: ObservableField<String> = ObservableField<String>("")
+
 
     fun bind(product: Product) {
 
@@ -30,6 +37,29 @@ class ProductItemViewModel : ViewModel() {
         configPrice(product)
 
         likes.set("${product.likesCount}")
+
+        val avatarUrl = configImg(product.user.avatar, 50, 50)
+
+        avatarImgUrl.set(avatarUrl)
+
+        val productrUrl = configImg(product.photos[0], 200, 200)
+
+        productImgUrl.set(productrUrl)
+    }
+
+    private fun configImg(photo: Photo, with: Int, height: Int): String {
+
+        val urlBuilder = URLBuilder().apply {
+            baseURL = BuildConfig.BASE_IMG_URL
+
+            crop = photo.crop
+            gravity = photo.gravity
+            publicId = photo.publicId
+            width = with
+            this.height = height
+        }
+
+        return urlBuilder.build()
     }
 
     private fun configPrice(product: Product) {

@@ -16,6 +16,7 @@ data class Product(
         @SerializedName("maximum_installment")
         val maximumInstallment: Int,
         @SerializedName("published_comments_count")
-        val publishedCommentsCount: Int
-
+        val publishedCommentsCount: Int,
+        val user: User,
+        val photos: List<Photo>
 )
