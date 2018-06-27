@@ -7,12 +7,10 @@ import android.databinding.ObservableInt
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import br.com.tramalho.enjoeitest.BuildConfig
 import br.com.tramalho.enjoeitest.R
-import br.com.tramalho.enjoeitest.data.model.Photo
 import br.com.tramalho.enjoeitest.data.model.Product
-import br.com.tramalho.enjoeitest.infraestructure.URLBuilder
-import java.text.NumberFormat
+import br.com.tramalho.enjoeitest.infraestructure.configImg
+import br.com.tramalho.enjoeitest.infraestructure.formatCurrency
 
 class ProductItemViewModel() : ViewModel() {
 
@@ -32,6 +30,7 @@ class ProductItemViewModel() : ViewModel() {
 
     val placeHolderImg: ObservableInt = ObservableInt(R.drawable.placeholder_img)
 
+
     lateinit var product: Product
 
     fun bind(product: Product) {
@@ -42,7 +41,7 @@ class ProductItemViewModel() : ViewModel() {
 
         title.set(product.title)
 
-        configPrice(product)
+        price.set(formatCurrency(product.price))
 
         likes.set("${product.likesCount}")
 
@@ -50,29 +49,9 @@ class ProductItemViewModel() : ViewModel() {
 
         avatarImgUrl.set(avatarUrl)
 
-        val productrUrl = configImg(product.photos[0], 200, 200)
+        val productUrl = configImg(product.photos[0], 200, 200)
 
-        productImgUrl.set(productrUrl)
-    }
-
-    private fun configImg(photo: Photo, with: Int, height: Int): String {
-
-        val urlBuilder = URLBuilder().apply {
-            baseURL = BuildConfig.BASE_IMG_URL
-
-            crop = photo.crop
-            gravity = photo.gravity
-            publicId = photo.publicId
-            width = with
-            this.height = height
-        }
-
-        return urlBuilder.build()
-    }
-
-    private fun configPrice(product: Product) {
-        val format = NumberFormat.getCurrencyInstance()
-        price.set(format.format(product.price))
+        productImgUrl.set(productUrl)
     }
 
     private fun configDiscount(product: Product) {
@@ -88,7 +67,7 @@ class ProductItemViewModel() : ViewModel() {
 
     fun onClickFriend(view: View) {
         val intent = Intent(view.context, DetailProductActivity::class.java)
-        intent.putExtra("xpto", product)
+        intent.putExtra(DetailProductActivity.PRODUCT_EXTRA, product)
         view.context.startActivity(intent)
     }
 }

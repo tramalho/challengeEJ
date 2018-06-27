@@ -1,155 +1,186 @@
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/detail_content"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="428dp"
-        android:fitsSystemWindows="true"
+    <data>
 
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <variable
+            name="viewModel"
+            type="br.com.tramalho.enjoeitest.presentation.ProductDetailViewModel" />
+    </data>
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark"
-            app:contentScrim="?attr/colorAccent"
-            app:expandedTitleTextAppearance="@style/exp_toolbar_title"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/banner"
-                android:fitsSystemWindows="true"
-                android:scaleType="centerCrop"
-                app:layout_collapseMode="parallax" />
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:title="@string/app_name" />
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.widget.NestedScrollView
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/detail_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:fitsSystemWindows="true">
 
-        <RelativeLayout
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp">
+            android:layout_height="428dp"
+            android:fitsSystemWindows="true"
 
-            <TextView
-                android:id="@+id/price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="R$ 90"
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="24sp" />
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-            <br.com.tramalho.enjoeitest.presentation.StrikethroughTextView
-                android:id="@+id/originalPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_toRightOf="@id/price"
-                android:text="R$ 100"
-                android:textColor="@color/colorAccent"
-                android:textSize="24sp" />
-
-            <RelativeLayout
-                android:id="@+id/commentContainer"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_toLeftOf="@id/likeContainer"
-                android:layout_toStartOf="@id/likeContainer"
-                android:background="@drawable/circular_outline">
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                app:contentScrim="?attr/colorAccent"
+                app:expandedTitleTextAppearance="@style/exp_toolbar_title"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:statusBarScrim="?attr/colorAccent">
 
                 <ImageView
-                    android:id="@+id/iconChat"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_centerInParent="true"
-                    app:srcCompat="@drawable/ic_comment" />
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/placeholder_img"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    app:imageUrl="@{viewModel.productImgUrl}"
+                    app:layout_collapseMode="parallax"
+                    app:placeholder="@{viewModel.placeHolderImg}" />
 
-                <TextView
-                    android:layout_width="21dp"
-                    android:layout_height="21dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:background="@drawable/circular_background"
-                    android:gravity="center"
-                    android:text="17"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp" />
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    app:title="@{viewModel.title}" />
 
-            </RelativeLayout>
+            </android.support.design.widget.CollapsingToolbarLayout>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <RelativeLayout
-                android:id="@+id/likeContainer"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/circular_outline">
-
-                <ImageView
-                    android:id="@+id/iconLike"
-                    android:layout_width="19dp"
-                    android:layout_height="24dp"
-                    android:layout_centerInParent="true"
-                    app:srcCompat="@drawable/ic_like" />
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/maximumInstallment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/price"
-                android:layout_marginTop="4dp"
-                android:text="10% off em até 12x"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/maximumInstallment"
-                android:layout_marginTop="24dp"
-                android:text="Vestido Zara Florido"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/title"
-                android:layout_marginTop="25dp"
-                android:text="ele ganhou nosso coração! por isso, o espaço do tênis está garantido nas nossas novidades e promete continuar fazendo todas as suas. leia mais"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="16sp" />
-        </RelativeLayout>
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">
 
-    </android.support.v4.widget.NestedScrollView>
-</android.support.design.widget.CoordinatorLayout>
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center"
+                    android:text="@{viewModel.price}"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="24sp"
+                    tools:text="100" />
+
+                <br.com.tramalho.enjoeitest.presentation.StrikethroughTextView
+                    android:id="@+id/originalPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/price"
+                    android:layout_toRightOf="@+id/price"
+                    android:text="@{viewModel.originalPrice}"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="24sp"
+                    tools:text="100" />
+
+                <RelativeLayout
+                    android:id="@+id/commentContainer"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_toLeftOf="@+id/likeContainer"
+                    android:layout_toStartOf="@+id/likeContainer"
+                    android:background="@drawable/circular_outline">
+
+                    <ImageView
+                        android:id="@+id/iconChat"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerInParent="true"
+                        app:srcCompat="@drawable/ic_comment" />
+
+                    <TextView
+                        android:layout_width="21dp"
+                        android:layout_height="21dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/circular_background"
+                        android:gravity="center"
+                        android:text="@{viewModel.publishedCommentsCount}"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp"
+                        android:visibility="@{viewModel.publishedCommentsVisibility, default = gone}" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/likeContainer"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/circular_outline">
+
+                    <ImageView
+                        android:id="@+id/iconLike"
+                        android:layout_width="19dp"
+                        android:layout_height="24dp"
+                        android:layout_centerInParent="true"
+                        app:srcCompat="@drawable/ic_like" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/paymentInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/price"
+                    tools:text="10% off em até 12x"
+                    android:text="@{viewModel.paymentInfo}"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/commentContainer"
+                    tools:text="Vestido Zara Florido"
+                    android:text="@{viewModel.title}"
+                    android:layout_marginTop="26dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title"
+                    android:layout_marginTop="25dp"
+                    tools:text="ele ganhou nosso coração! por isso, o espaço do tênis está garantido nas nossas novidades e promete continuar fazendo todas as suas. leia mais"
+                    android:text="@{viewModel.content}"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp" />
+
+
+            </RelativeLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

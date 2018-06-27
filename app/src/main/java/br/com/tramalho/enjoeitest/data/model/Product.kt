@@ -21,5 +21,6 @@ data class Product(
         @SerializedName("published_comments_count")
         val publishedCommentsCount: Int,
         val user: User,
-        val photos: List<Photo>
+        val photos: List<Photo>,
+        val content: String?
 ) : Parcelable
