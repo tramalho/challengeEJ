@@ -1,17 +1,20 @@
 package br.com.tramalho.enjoeitest.presentation
 
 import android.arch.lifecycle.ViewModel
+import android.content.Intent
 import android.databinding.ObservableField
 import android.databinding.ObservableInt
+import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import br.com.tramalho.enjoeitest.BuildConfig
+import br.com.tramalho.enjoeitest.R
 import br.com.tramalho.enjoeitest.data.model.Photo
 import br.com.tramalho.enjoeitest.data.model.Product
 import br.com.tramalho.enjoeitest.infraestructure.URLBuilder
 import java.text.NumberFormat
 
-class ProductItemViewModel : ViewModel() {
+class ProductItemViewModel() : ViewModel() {
 
     val discount: ObservableField<String> = ObservableField<String>("0")
 
@@ -27,8 +30,13 @@ class ProductItemViewModel : ViewModel() {
 
     val productImgUrl: ObservableField<String> = ObservableField<String>("")
 
+    val placeHolderImg: ObservableInt = ObservableInt(R.drawable.placeholder_img)
+
+    lateinit var product: Product
 
     fun bind(product: Product) {
+
+        this.product = product
 
         configDiscount(product)
 
@@ -78,4 +86,9 @@ class ProductItemViewModel : ViewModel() {
         discountVisibility.set(visibilityDiscount)
     }
 
+    fun onClickFriend(view: View) {
+        val intent = Intent(view.context, DetailProductActivity::class.java)
+        intent.putExtra("xpto", product)
+        view.context.startActivity(intent)
+    }
 }

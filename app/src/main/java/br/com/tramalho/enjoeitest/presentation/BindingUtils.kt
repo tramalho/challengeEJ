@@ -19,13 +19,13 @@ fun <T> bindItens(recyclerView: RecyclerView, list: ObservableArrayList<T>) {
     adapter.updateItens(list)
 }
 
-@BindingAdapter(value= arrayOf("imageUrl", "rounded"), requireAll = false)
-fun loadImage(imageView: ImageView, url: String, roundingRadius : Int = 0) {
+@BindingAdapter(value= arrayOf("imageUrl", "rounded", "placeholder"), requireAll = false)
+fun loadImage(imageView: ImageView, url: String, roundingRadius : Int = 0, placeHolder : Int = R.drawable.hint_img) {
     val context = imageView.context
     if (!TextUtils.isEmpty(url)) {
 
         var requestOptions =
-                RequestOptions().placeholder(R.drawable.hint_img);
+                RequestOptions().placeholder(placeHolder);
 
         if (roundingRadius > 0) {
             requestOptions.transforms(RoundedCorners(roundingRadius));
@@ -40,6 +40,6 @@ fun loadImage(imageView: ImageView, url: String, roundingRadius : Int = 0) {
         Log.d("BindingUtils:loadImage", url)
 
     } else {
-        imageView.setImageResource(R.drawable.hint_img)
+        imageView.setImageResource(placeHolder)
     }
 }

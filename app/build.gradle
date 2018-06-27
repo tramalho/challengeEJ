@@ -36,6 +36,10 @@ android {
             coroutines "enable"
         }
     }
+
+    androidExtensions {
+        experimental = true
+    }
 }
 
 dependencies {

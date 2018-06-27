@@ -1,4 +1,8 @@
 package br.com.tramalho.enjoeitest.data.model
 
-data class User(val name: String, val avatar: Photo)
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class User(var name: String, var avatar: Photo) : Parcelable
 
