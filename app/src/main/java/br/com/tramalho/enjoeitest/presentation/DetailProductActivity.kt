@@ -22,7 +22,7 @@ class DetailProductActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewDataBinding = setContentView<ActivityDetailProductBinding>(this, R.layout.activity_detail_product)
+        viewDataBinding = setContentView(this, R.layout.activity_detail_product)
 
         setSupportActionBar(toolbar)
 
