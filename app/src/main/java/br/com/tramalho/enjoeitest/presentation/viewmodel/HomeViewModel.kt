@@ -32,6 +32,7 @@ class HomeViewModel() : ViewModel() {
         ProductsUseCase(getRepository()).loadFromPage(actualPage, Callback())
     }
 
+    //TODO: SUBSTITUIR POR DAGGER
     private fun getRepository(): ProductRepository {
 
         val networkModule = NetworkModule()
