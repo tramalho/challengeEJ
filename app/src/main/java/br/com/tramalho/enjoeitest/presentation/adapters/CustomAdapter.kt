@@ -1,4 +1,4 @@
-package br.com.tramalho.enjoeitest.presentation
+package br.com.tramalho.enjoeitest.presentation.adapters
 
 import android.databinding.ObservableArrayList
 

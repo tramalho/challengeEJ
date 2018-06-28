@@ -1,4 +1,4 @@
-package br.com.tramalho.enjoeitest.presentation
+package br.com.tramalho.enjoeitest.presentation.utilities
 
 import android.databinding.BindingAdapter
 import android.databinding.ObservableArrayList
@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.widget.ImageView
 import br.com.tramalho.enjoeitest.R
+import br.com.tramalho.enjoeitest.presentation.adapters.CustomAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions

@@ -10,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import br.com.tramalho.enjoeitest.R
 import br.com.tramalho.enjoeitest.databinding.FragmentHomeBinding
+import br.com.tramalho.enjoeitest.presentation.adapters.ProductsAdapter
+import br.com.tramalho.enjoeitest.presentation.viewmodel.HomeViewModel
 import java.util.*
 
 private const val COLUMN: Int = 2

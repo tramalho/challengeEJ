@@ -7,9 +7,12 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
+val TIMEOUT: Long = 5
 
 class NetworkModule {
+
 
     fun retrofit(httpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
@@ -25,9 +28,13 @@ class NetworkModule {
         val logging = HttpLoggingInterceptor()
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
 
-        val httpClient = OkHttpClient.Builder()
-        httpClient.addInterceptor(logging)
-        return httpClient.build()
+        return OkHttpClient
+                .Builder()
+                .addInterceptor(logging)
+                .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
+                .readTimeout(TIMEOUT, TimeUnit.SECONDS)
+                .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
+                .build()
     }
 
     fun serviceAPI(retrofit: Retrofit): ServiceApi {

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import br.com.tramalho.enjoeitest.R
 import br.com.tramalho.enjoeitest.infraestructure.disableShiftMode
+import br.com.tramalho.enjoeitest.presentation.adapters.ViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 private const val HOME: Int = 0

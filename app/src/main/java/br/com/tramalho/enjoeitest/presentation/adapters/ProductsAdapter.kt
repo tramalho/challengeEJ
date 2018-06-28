@@ -1,4 +1,4 @@
-package br.com.tramalho.enjoeitest.presentation
+package br.com.tramalho.enjoeitest.presentation.adapters
 
 import android.databinding.DataBindingUtil
 import android.databinding.ObservableArrayList
@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import br.com.tramalho.enjoeitest.R
 import br.com.tramalho.enjoeitest.data.model.Product
 import br.com.tramalho.enjoeitest.databinding.ProductItemBinding
+import br.com.tramalho.enjoeitest.presentation.viewmodel.ProductItemViewModel
 
 private const val BANNER: Int = 0
 private const val ITEM: Int = 1
@@ -42,7 +43,7 @@ class ProductsAdapter(val itens: ArrayList<Product>) : RecyclerView.Adapter<Prod
         val itemBinding = DataBindingUtil.inflate<ProductItemBinding>(layoutInflater,
                 R.layout.product_item, parent, false);
 
-        return ProductViewHolder(itemBinding) as BaseViewHolder
+        return ProductViewHolder(itemBinding)
     }
 
     override fun getItemCount(): Int {

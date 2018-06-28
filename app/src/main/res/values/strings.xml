@@ -5,4 +5,7 @@
     <string name="photo">Fotos</string>
     <string name="messages">Mensagens</string>
     <string name="profile">Perfil</string>
+    <string name="title_error_page">Turbulências na rede</string>
+    <string name="error_page_text">nosso cyber voo tá chacoalhando dê uma checada na sua internet pra continuar com a gente :P</string>
+    <string name="retry_button_msg">tentar de novo</string>
 </resources>

@@ -1,4 +1,4 @@
-package br.com.tramalho.enjoeitest.presentation
+package br.com.tramalho.enjoeitest.presentation.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import android.content.Intent
@@ -11,6 +11,7 @@ import br.com.tramalho.enjoeitest.R
 import br.com.tramalho.enjoeitest.data.model.Product
 import br.com.tramalho.enjoeitest.infraestructure.configImg
 import br.com.tramalho.enjoeitest.infraestructure.formatCurrency
+import br.com.tramalho.enjoeitest.presentation.DetailProductActivity
 
 class ProductItemViewModel() : ViewModel() {
 

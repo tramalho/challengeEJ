@@ -1,4 +1,4 @@
-package br.com.tramalho.enjoeitest.presentation
+package br.com.tramalho.enjoeitest.presentation.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableField
@@ -12,10 +12,6 @@ import br.com.tramalho.enjoeitest.infraestructure.configImg
 import br.com.tramalho.enjoeitest.infraestructure.formatCurrency
 
 class ProductDetailViewModel() : ViewModel() {
-
-    val productImgUrl: ObservableField<String> = ObservableField<String>("")
-
-    val placeHolderImg: ObservableInt = ObservableInt()
 
     val price: ObservableField<String> = ObservableField<String>("")
 
@@ -31,13 +27,7 @@ class ProductDetailViewModel() : ViewModel() {
 
     val content: ObservableField<String> = ObservableField<String>("")
 
-
     fun bind(product: Product) {
-        val productUrl = configImg(product.photos[0], 360, 428)
-
-        placeHolderImg.set(R.drawable.placeholder_img)
-
-        productImgUrl.set(productUrl)
 
         price.set(formatCurrency(product.price))
 
