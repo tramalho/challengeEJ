@@ -7,16 +7,17 @@ apply plugin: "kotlin-android-extensions"
 apply plugin: "kotlin-kapt"
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "br.com.tramalho.enjoeitest"
         minSdkVersion 15
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "BASE_URL", "\"https://private-anon-ff6ada1084-enjoeitest.apiary-mock.com\"")
+        // https://enjoeitest.docs.apiary.io/#reference/0/products-listing/home?console=1
+        buildConfigField("String", "BASE_URL", "\"https://private-anon-05cb5f89a1-enjoeitest.apiary-mock.com\"")
         buildConfigField("String", "BASE_IMG_URL", "\"http://res.cloudinary.com/demo/image/upload\"")
 
     }
